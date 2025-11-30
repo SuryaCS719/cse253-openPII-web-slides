@@ -1,88 +1,67 @@
 # OpenPII Watcher - Presentation Slides
 
-Web-based presentation slides for the OpenPII Watcher project (CSE 253 - Network Security).
+Web-based presentation slides for the OpenPII Watcher project, a systematic PII detection system for publicly shared documents.
 
-## 🎯 About
+## About
 
-This presentation demonstrates our research on systematic PII detection in publicly shared documents (Google Docs, Pastebin).
+This presentation demonstrates our research on detecting exposed PII in Google Docs and Pastebin links.
 
 **Key Results:**
-- 84.3% Precision
-- 87.6% Recall  
-- Perfect 100% F1-scores for emails, addresses, SSN
-- 84% improvement over baseline
+- 84.3% Precision, 87.6% Recall
+- Perfect 100% F1-scores for emails, addresses, and SSN
+- 84% improvement over baseline patterns
 
-## 🚀 View Presentation
+## Live Presentation
 
-**Live Demo:** [https://suryacs719.github.io/cse253-openPII-web-slides/](https://suryacs719.github.io/cse253-openPII-web-slides/)
+View at: [https://suryacs719.github.io/cse253-openPII-web-slides/](https://suryacs719.github.io/cse253-openPII-web-slides/)
 
-## 🎹 Keyboard Shortcuts
+## Keyboard Shortcuts
 
-### Main Presentation:
-- **→** or **Space** - Next slide
-- **←** - Previous slide
-- **F** - Toggle fullscreen
-- **N** - Open presenter mode (with speaker notes)
-- **1-9** - Jump to slide
-- **Home** - First slide
-- **End** - Last slide
+**Navigation:**
+- Arrow keys or Space: Navigate slides
+- F: Toggle fullscreen
+- N: Open presenter mode
+- 1-9: Jump to specific slide
+- Home/End: First/Last slide
 
-### Presenter Mode:
-- Press **N** to open a separate presenter window with:
-  - Speaker notes for all 14 slides
-  - Timer with color coding
-  - Slide counter
-  - Auto-sync between windows
+**Presenter Mode:**
 
-Navigate in either window - both stay synchronized!
-
-## 📊 Presentation Structure
-
-1. **Title & Metrics** - Project overview and key results
-2. **Problem Statement** - PII exposure risks
-3. **Research Question** - Accuracy, coverage, privacy
-4. **Solution Overview** - 6 key contributions
-5. **System Architecture** - 3-layer modular design
-6. **Platform Integration** - Pastebin & Google Docs
-7. **Detection Patterns** - Enhanced regex implementation
-8. **Results** - Performance metrics
-9. **Baseline Comparison** - 84% improvement
-10. **Key Findings** - 4 main insights
-11. **Limitations & Future Work**
-12. **Live Demo** - Working system
-13. **Conclusion** - Summary and impact
-14. **Resources** - GitHub links
-
-## 🛠️ Technical Details
-
-**Built with:**
-- HTML5
-- CSS3 (Custom styling)
-- Vanilla JavaScript (No frameworks)
-
-**Features:**
-- Client-side only (no backend)
-- Responsive design
-- Presenter mode with speaker notes
+Press `N` to open a separate presenter window with:
+- Speaker notes for all slides
+- Timer with color-coded warnings
+- Slide counter and targets
 - Bidirectional sync between windows
-- Timer with color coding
-- Progress tracking
 
-## 📚 Related Links
+Navigate in either window - both stay synchronized.
 
-- **Project Code:** [github.com/SuryaCS719/cse253-openPII](https://github.com/SuryaCS719/cse253-openPII)
-- **Web Demo:** [github.com/SuryaCS719/cse253-openPII-web](https://github.com/SuryaCS719/cse253-openPII-web)
+## Presentation Structure
 
-## 👥 Team
+1. Title and Key Metrics
+2. Problem Statement
+3. Research Question
+4. Solution Overview
+5. System Architecture
+6. Platform Integration
+7. Detection Patterns
+8. Results
+9. Baseline Comparison
+10. Key Findings
+11. Limitations and Future Work
+12. Live Demo
+13. Conclusion
+14. Resources
 
-- Surya
-- Arsh  
-- Vijay
+## Technical Implementation
 
-**Course:** CSE 253 - Network Security (UCSC)
+Built with HTML5, CSS3, and vanilla JavaScript. Features client-side processing, responsive design, and a custom presenter mode with speaker notes.
 
----
+## Related Repositories
 
-**Deployment:** GitHub Pages  
-**Last Updated:** December 2024
+- Project Code: [github.com/SuryaCS719/cse253-openPII](https://github.com/SuryaCS719/cse253-openPII)
+- Web Demo: [github.com/SuryaCS719/cse253-openPII-web](https://github.com/SuryaCS719/cse253-openPII-web)
 
+## Team
+
+Surya, Arsh, Vijay
+
+CSE 253 - Network Security, UC Santa Cruz
