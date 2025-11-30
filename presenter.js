@@ -141,14 +141,6 @@ class PresenterMode {
 
         // Start timer
         this.startTimer();
-
-        // Immediately load notes for current slide (slide 1 by default)
-        // Use requestAnimationFrame for fastest possible update
-        requestAnimationFrame(() => {
-            const currentSlide = document.querySelector('.slide.active');
-            const slideNum = currentSlide ? currentSlide.getAttribute('data-slide') : '1';
-            this.updatePresenterView(slideNum);
-        });
     }
 
     syncBackToMainWindow() {
@@ -210,23 +202,17 @@ class PresenterMode {
     }
 
     updatePresenterView(slideNum) {
-        // Determine slide number
-        let slideNumber = slideNum;
-        if (!slideNumber) {
-            const currentSlide = document.querySelector('.slide.active');
-            if (!currentSlide) return;
-            slideNumber = currentSlide.getAttribute('data-slide');
-        }
+        const currentSlide = document.querySelector('.slide.active');
+        if (!currentSlide) return;
 
+        const slideNumber = slideNum || currentSlide.getAttribute('data-slide');
         const notes = this.getSpeakerNotes(slideNumber);
 
         // Update slide info
         const slideInfo = document.getElementById('slide-info');
         if (slideInfo) {
-            const slideNumberEl = slideInfo.querySelector('.slide-number');
-            const slideTimingEl = slideInfo.querySelector('.slide-timing');
-            if (slideNumberEl) slideNumberEl.textContent = `Slide ${slideNumber} / 14`;
-            if (slideTimingEl) slideTimingEl.textContent = `Target: ${notes.timing}`;
+            slideInfo.querySelector('.slide-number').textContent = `Slide ${slideNumber} / 14`;
+            slideInfo.querySelector('.slide-timing').textContent = `Target: ${notes.timing}`;
         }
 
         // Update notes content
