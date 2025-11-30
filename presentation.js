@@ -75,22 +75,15 @@ class Presentation {
         if (slideNumber < 1 || slideNumber > this.totalSlides) return;
 
         const slides = document.querySelectorAll('.slide');
-        const currentSlideElement = slides[this.currentSlide - 1];
-        const nextSlideElement = slides[slideNumber - 1];
+        
+        // Remove active and prev classes from all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active', 'prev');
+        });
 
-        // Remove active class from current slide
-        currentSlideElement.classList.remove('active');
-
-        // Add appropriate transition class
-        if (slideNumber > this.currentSlide) {
-            currentSlideElement.classList.add('prev');
-            nextSlideElement.classList.remove('prev');
-        } else {
-            currentSlideElement.classList.remove('prev');
-        }
-
-        // Activate new slide
-        nextSlideElement.classList.add('active');
+        // Activate the target slide
+        const targetSlide = slides[slideNumber - 1];
+        targetSlide.classList.add('active');
 
         // Update current slide number
         this.currentSlide = slideNumber;
@@ -101,7 +94,7 @@ class Presentation {
         this.updateNavigationButtons();
 
         // Scroll to top of slide
-        nextSlideElement.scrollTop = 0;
+        targetSlide.scrollTop = 0;
     }
 
     updateSlideCounter() {

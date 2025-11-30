@@ -40,13 +40,16 @@ class PresenterMode {
 
     goToSlide(slideNum) {
         // Navigate main window to specific slide
+        const slides = document.querySelectorAll('.slide');
         const targetSlide = document.querySelector(`.slide[data-slide="${slideNum}"]`);
-        const currentSlide = document.querySelector('.slide.active');
         
-        if (targetSlide && targetSlide !== currentSlide) {
-            if (currentSlide) {
-                currentSlide.classList.remove('active');
-            }
+        if (targetSlide) {
+            // Remove active and prev classes from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+            
+            // Activate target slide
             targetSlide.classList.add('active');
             
             // Update progress bar and counter if they exist
