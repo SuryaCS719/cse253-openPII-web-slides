@@ -1,0 +1,215 @@
+/* Presenter Mode Styles */
+
+/* Main window: hide presenter controls */
+body:not(.presenter-mode) #presenter-notes {
+    display: none;
+}
+
+/* Presenter window: split layout */
+body.presenter-mode {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body.presenter-mode .presentation {
+    width: 60%;
+    height: 100vh;
+    overflow: hidden;
+    border-right: 2px solid #e5e7eb;
+}
+
+body.presenter-mode #presenter-notes {
+    width: 40%;
+    height: 100vh;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Presenter header with timer and slide info */
+.presenter-header {
+    background: #1e40af;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timer-section {
+    text-align: left;
+}
+
+.timer {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    line-height: 1;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.timer-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.slide-info {
+    text-align: right;
+}
+
+.slide-number {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.slide-timing {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Notes content area */
+.notes-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.notes-content h3 {
+    color: #1e40af;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.notes-content p {
+    color: #374151;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.notes-content ol,
+.notes-content ul {
+    color: #374151;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.notes-content li {
+    margin-bottom: 10px;
+}
+
+.notes-content strong {
+    color: #1e40af;
+    font-weight: 600;
+}
+
+.notes-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #dc2626;
+}
+
+.notes-content em {
+    color: #059669;
+    font-style: italic;
+}
+
+/* Key points section */
+.key-points {
+    background: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.key-points strong {
+    color: #92400e;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.key-points ul {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+}
+
+.key-points li {
+    color: #78350f;
+    margin-bottom: 5px;
+}
+
+/* Transition cue */
+.transition {
+    background: #dbeafe;
+    border-left: 4px solid #1e40af;
+    padding: 12px 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    color: #1e3a8a;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Scrollbar styling for notes */
+.notes-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notes-content::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.notes-content::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 4px;
+}
+
+.notes-content::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Responsive adjustments for smaller presenter windows */
+@media (max-width: 1200px) {
+    body.presenter-mode .presentation {
+        width: 50%;
+    }
+    
+    body.presenter-mode #presenter-notes {
+        width: 50%;
+    }
+    
+    .timer {
+        font-size: 36px;
+    }
+    
+    .slide-number {
+        font-size: 20px;
+    }
+    
+    .notes-content {
+        padding: 20px;
+        margin: 15px;
+    }
+}
+

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenPII Watcher - Network Security Research</title>
+    <link rel="stylesheet" href="presentation_v2.css">
+    <link rel="stylesheet" href="presenter.css">
+</head>
+
+<body>
+    <div class="presentation">
+
+        <!-- Slide 1: Title -->
+        <section class="slide active" data-slide="1">
+            <div class="content center title-slide">
+                <h1 class="project-name">OpenPII Watcher</h1>
+                <p class="subtitle">Systematic Detection of Exposed PII in Publicly Shared Documents</p>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value">84.3%</span>
+                        <span class="metric-label">Precision</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">100%</span>
+                        <span class="metric-label">Perfect F1</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">+84%</span>
+                        <span class="metric-label">vs Baseline</span>
+                    </div>
+                </div>
+
+                <div class="authors">
+                    <p>Suryakiran Valavala • Arsh Advani • Vijay Arvind Ramamoorthy</p>
+                    <p class="affiliation">UC Santa Cruz • CSE 253: Network Security</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: The Problem -->
+        <section class="slide" data-slide="2">
+            <div class="content">
+                <h2>The Problem</h2>
+                <div class="problem-grid">
+                    <div class="problem-section">
+                        <h3>Exposure Risks</h3>
+                        <ul class="problem-list">
+                            <li>Google Docs with "anyone with link" permissions</li>
+                            <li>Pastebin posts shared publicly by users</li>
+                            <li>Contact lists and signup sheets left open</li>
+                            <li>Sensitive data accidentally exposed in dumps</li>
+                        </ul>
+                    </div>
+                    <div class="problem-section">
+                        <h3>Security Impacts</h3>
+                        <ul class="problem-list">
+                            <li>Phishing attacks targeting exposed emails</li>
+                            <li>Social engineering using names and phones</li>
+                            <li>Identity theft from SSN and financial data</li>
+                            <li>Comprehensive profiling from aggregated PII</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="problem-highlight">
+                    Users lack tools to check what PII their documents expose before sharing.
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Research Question -->
+        <section class="slide" data-slide="3">
+            <div class="content center">
+                <h2>Research Question</h2>
+                <p class="question-main" style="font-size: 2.5rem; color: var(--text-primary);">
+                    Can we <strong>systematically detect PII</strong> exposed through public sharing links?
+                </p>
+                <div class="sub-questions">
+                    <div class="sub-question">
+                        <h3>Accuracy</h3>
+                        <p>Using transparent, lightweight pattern matching</p>
+                    </div>
+                    <div class="sub-question">
+                        <h3>Coverage</h3>
+                        <p>Emails, Phones, Names, Addresses, SSN</p>
+                    </div>
+                    <div class="sub-question">
+                        <h3>Privacy</h3>
+                        <p>100% Client-side processing for safety</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Solution Overview -->
+        <section class="slide" data-slide="4">
+            <div class="content">
+                <h2>Our Solution</h2>
+                <div class="solution-grid">
+                    <div class="solution-item">
+                        <h3>Enhanced Detection</h3>
+                        <p>Improved regex patterns with false positive filtering</p>
+                    </div>
+                    <div class="solution-item">
+                        <h3>Multi-Platform</h3>
+                        <p>Pastebin (95%+) and Google Docs (60-80%)</p>
+                    </div>
+                    <div class="solution-item">
+                        <h3>Privacy-First</h3>
+                        <p>100% client-side processing, no server needed</p>
+                    </div>
+                    <div class="solution-item">
+                        <h3>Rigorous Evaluation</h3>
+                        <p>16 documents, 192 PII instances, ground truth</p>
+                    </div>
+                    <div class="solution-item">
+                        <h3>Working Demo</h3>
+                        <p>Deployed web application on GitHub Pages</p>
+                    </div>
+                    <div class="solution-item">
+                        <h3>Open Source</h3>
+                        <p>Complete implementation and evaluation code</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Architecture -->
+        <section class="slide" data-slide="5">
+            <div class="content center">
+                <h2>System Architecture</h2>
+                <div class="architecture">
+                    <div class="arch-layer">
+                        <h3>Data Layer</h3>
+                        <p>URL Parsing • Platform Detection • Content Fetching</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="arch-layer">
+                        <h3>Detection Layer</h3>
+                        <p>Regex Pattern Matching • False Positive Filtering</p>
+                    </div>
+                    <div class="arrow-down">↓</div>
+                    <div class="arch-layer">
+                        <h3>Output Layer</h3>
+                        <p>Results Aggregation • Risk Assessment • Recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Platform Integration -->
+        <section class="slide" data-slide="6">
+            <div class="content">
+                <h2>Platform Integration</h2>
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <h3>Pastebin</h3>
+                        <div class="platform-detail">
+                            <span class="label">Method</span>
+                            <span class="value">Direct fetch via /raw/ endpoint</span>
+                        </div>
+                        <div class="platform-detail">
+                            <span class="label">CORS Support</span>
+                            <span class="value">Native</span>
+                        </div>
+                        <div class="platform-detail">
+                            <span class="label">Success Rate</span>
+                            <span class="value" style="color: var(--success-color)">95%+</span>
+                        </div>
+                    </div>
+                    <div class="platform-card">
+                        <h3>Google Docs</h3>
+                        <div class="platform-detail">
+                            <span class="label">Method</span>
+                            <span class="value">Two-tier fallback strategy</span>
+                        </div>
+                        <div class="platform-detail">
+                            <span class="label">Tier 1 (Direct)</span>
+                            <span class="value">40% success</span>
+                        </div>
+                        <div class="platform-detail">
+                            <span class="label">Tier 2 (Proxy)</span>
+                            <span class="value">+20-40% success</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Detection Patterns -->
+        <section class="slide" data-slide="7">
+            <div class="content">
+                <h2>Detection Patterns</h2>
+                <div class="patterns-grid">
+                    <div class="pattern-card">
+                        <h3>Email</h3>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <div class="pattern-example">user+tag@domain.com</div>
+                    </div>
+                    <div class="pattern-card">
+                        <h3>Address</h3>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <div class="pattern-example">123 Main Street</div>
+                    </div>
+                    <div class="pattern-card">
+                        <h3>SSN</h3>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <div class="pattern-example">123-45-6789</div>
+                    </div>
+                    <div class="pattern-card">
+                        <h3>Name</h3>
+                        <span class="pattern-f1 f1-good">F1: 0.723</span>
+                        <div class="pattern-example">Dr. Mary-Anne O'Brien</div>
+                    </div>
+                    <div class="pattern-card">
+                        <h3>Phone</h3>
+                        <span class="pattern-f1 f1-good">F1: 0.681</span>
+                        <div class="pattern-example">(555) 123-4567</div>
+                    </div>
+                    <div class="pattern-card">
+                        <h3>Credit Card</h3>
+                        <span class="pattern-f1 f1-low">F1: 0.333</span>
+                        <div class="pattern-example">4532-1488-0343-6467</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Results -->
+        <section class="slide" data-slide="8">
+            <div class="content">
+                <h2>Detection Performance</h2>
+                <div class="metrics" style="margin-top: 0; margin-bottom: 2rem;">
+                    <div class="metric">
+                        <span class="metric-value">84.3%</span>
+                        <span class="metric-label">Precision</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">87.6%</span>
+                        <span class="metric-label">Recall</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">85.9%</span>
+                        <span class="metric-label">F1-Score</span>
+                    </div>
+                </div>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>PII Type</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pii-type">Email</td>
+                            <td>100%</td>
+                            <td>100%</td>
+                            <td class="improvement-value">1.000</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Address</td>
+                            <td>100%</td>
+                            <td>100%</td>
+                            <td class="improvement-value">1.000</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">SSN</td>
+                            <td>100%</td>
+                            <td>100%</td>
+                            <td class="improvement-value">1.000</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Name</td>
+                            <td>58.7%</td>
+                            <td>94.1%</td>
+                            <td>0.723</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Phone</td>
+                            <td>62.8%</td>
+                            <td>74.2%</td>
+                            <td>0.681</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Slide 9: Baseline Comparison -->
+        <section class="slide" data-slide="9">
+            <div class="content">
+                <h2>Baseline Comparison</h2>
+                <div class="problem-highlight" style="margin-top: 1rem; margin-bottom: 2rem;">
+                    Average Improvement: <span style="color: var(--success-color);">+84.3%</span>
+                </div>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>PII Type</th>
+                            <th>Our F1</th>
+                            <th>Baseline F1</th>
+                            <th>Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pii-type">Email</td>
+                            <td>1.000</td>
+                            <td>0.368</td>
+                            <td class="improvement-value">+172.0%</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Phone</td>
+                            <td>0.681</td>
+                            <td>0.340</td>
+                            <td class="improvement-value">+99.9%</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Name</td>
+                            <td>0.723</td>
+                            <td>0.491</td>
+                            <td class="improvement-value">+47.4%</td>
+                        </tr>
+                        <tr>
+                            <td class="pii-type">Address</td>
+                            <td>1.000</td>
+                            <td>0.000</td>
+                            <td class="improvement-value">New Capability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Slide 10: Key Findings -->
+        <section class="slide" data-slide="10">
+            <div class="content">
+                <h2>Key Findings</h2>
+                <div class="findings-grid">
+                    <div class="finding-card">
+                        <h3>Regex Works for Structured PII</h3>
+                        <p>Perfect 100% F1-scores for emails, addresses, and SSN validate regex-based approach for data
+                            with consistent patterns.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Precision-Recall Trade-offs</h3>
+                        <p>Names achieve 94.1% recall (catches nearly all names) with 58.7% precision—an intentional
+                            design choice for a privacy tool.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Client-Side Processing is Practical</h3>
+                        <p>No server infrastructure needed, users control their data, and privacy is preserved through
+                            local processing.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Significant Baseline Improvement</h3>
+                        <p>+84.3% average F1 improvement demonstrates the value of our enhanced patterns and false
+                            positive filtering.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Future Work -->
+        <section class="slide" data-slide="11">
+            <div class="content">
+                <h2>Limitations & Future Work</h2>
+                <div class="future-grid">
+                    <div class="finding-card">
+                        <h3>Current Limitations</h3>
+                        <ul>
+                            <li><strong>Name Precision (58.7%)</strong>: False positives from capitalized common words.
+                            </li>
+                            <li><strong>Phone Coverage (74.2%)</strong>: Misses some international formats and
+                                extensions.</li>
+                            <li><strong>Google Docs</strong>: CORS restrictions and authentication issues (60-80%
+                                success).</li>
+                        </ul>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Future Directions</h3>
+                        <ul>
+                            <li><strong>Context-Aware Filtering</strong>: Using NLP to improve name detection.</li>
+                            <li><strong>Browser Extension</strong>: For auto-scanning and better Google Docs access.
+                            </li>
+                            <li><strong>Platform Expansion</strong>: Support for Notion, Dropbox Paper, and Sheets.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: Demo -->
+        <section class="slide" data-slide="12">
+            <div class="content center">
+                <h2>Live Demo</h2>
+                <div class="demo-url">
+                    <a href="https://suryacs719.github.io/cse253-openPII-web/" target="_blank"
+                        style="color: inherit; text-decoration: none;">suryacs719.github.io/cse253-openPII-web</a>
+                </div>
+                <div class="demo-features">
+                    <span class="demo-feature">Real-time Detection</span>
+                    <span class="demo-feature">Risk Assessment</span>
+                    <span class="demo-feature">Security Tips</span>
+                    <span class="demo-feature">100% Client-Side</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Conclusion -->
+        <section class="slide" data-slide="13">
+            <div class="content center">
+                <h2>Conclusion</h2>
+                <p style="font-size: 2rem; color: var(--text-primary); max-width: 900px; margin-bottom: 4rem;">
+                    Systematic PII detection in shared documents is <strong>feasible</strong>,
+                    <strong>effective</strong>, and <strong>privacy-preserving</strong>.
+                </p>
+                <div class="conclusion-metrics">
+                    <div class="conclusion-metric">
+                        <span class="value">84.3%</span>
+                        <span class="label">Precision</span>
+                    </div>
+                    <div class="conclusion-metric">
+                        <span class="value">100%</span>
+                        <span class="label">Structured F1</span>
+                    </div>
+                    <div class="conclusion-metric">
+                        <span class="value">+84%</span>
+                        <span class="label">Improvement</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Q&A -->
+        <section class="slide" data-slide="14">
+            <div class="content center">
+                <h2>Resources</h2>
+                <div class="resources-grid" style="display: flex; gap: 2rem; margin-bottom: 4rem;">
+                    <div class="resource-box">
+                        <h3>Web Tool</h3>
+                        <p class="resource-link">
+                            <a href="https://suryacs719.github.io/cse253-openPII-web/"
+                                target="_blank">suryacs719.github.io/cse253-openPII-web</a>
+                        </p>
+                    </div>
+                    <div class="resource-box">
+                        <h3>Source Code</h3>
+                        <p class="resource-link">
+                            <a href="https://github.com/SuryaCS719/cse253-openPII"
+                                target="_blank">github.com/SuryaCS719/cse253-openPII</a>
+                        </p>
+                    </div>
+                </div>
+                <h1 style="font-size: 6rem; margin-top: 2rem;">Questions?</h1>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">←</button>
+        <span class="slide-counter" id="slideCounter">1 / 14</span>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <script src="presentation.js"></script>
+    <script src="presenter.js"></script>
+</body>
+
+</html>
