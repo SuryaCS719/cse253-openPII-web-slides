@@ -153,36 +153,45 @@
         <!-- Slide 6: Platform Integration -->
         <section class="slide" data-slide="6">
             <div class="content">
-                <h2>Platform Integration</h2>
+                <h2>How We Access Different Platforms</h2>
+                <p class="slide-intro" style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">
+                    Different platforms require different approaches to fetch content. Here's how we handle each:
+                </p>
                 <div class="platform-grid">
                     <div class="platform-card">
                         <h3>Pastebin</h3>
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                            <strong>Simple approach:</strong> Pastebin provides a special URL format that allows direct access to raw text.
+                        </p>
                         <div class="platform-detail">
-                            <span class="label">Method</span>
-                            <span class="value">Direct fetch via /raw/ endpoint</span>
+                            <span class="label">How it works</span>
+                            <span class="value">Transform: pastebin.com/ABC123 → pastebin.com/raw/ABC123</span>
                         </div>
                         <div class="platform-detail">
-                            <span class="label">CORS Support</span>
-                            <span class="value">Native</span>
+                            <span class="label">Why it works</span>
+                            <span class="value">Pastebin's /raw/ endpoint allows cross-origin requests</span>
                         </div>
                         <div class="platform-detail">
                             <span class="label">Success Rate</span>
-                            <span class="value" style="color: var(--success-color)">95%+</span>
+                            <span class="value" style="color: var(--success-color); font-weight: 600;">95%+</span>
                         </div>
                     </div>
                     <div class="platform-card">
                         <h3>Google Docs</h3>
+                        <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                            <strong>Challenge:</strong> Google Docs blocks direct access from browsers (CORS restrictions). We use a two-step approach:
+                        </p>
                         <div class="platform-detail">
-                            <span class="label">Method</span>
-                            <span class="value">Two-tier fallback strategy</span>
+                            <span class="label">Step 1: Try Direct</span>
+                            <span class="value">Attempt direct access (works ~40% of the time)</span>
                         </div>
                         <div class="platform-detail">
-                            <span class="label">Tier 1 (Direct)</span>
-                            <span class="value">40% success</span>
+                            <span class="label">Step 2: Use Proxy</span>
+                            <span class="value">If blocked, use a proxy service (+20-40% success)</span>
                         </div>
                         <div class="platform-detail">
-                            <span class="label">Tier 2 (Proxy)</span>
-                            <span class="value">+20-40% success</span>
+                            <span class="label">Combined Success</span>
+                            <span class="value" style="color: var(--success-color); font-weight: 600;">60-80%</span>
                         </div>
                     </div>
                 </div>
@@ -192,37 +201,58 @@
         <!-- Slide 7: Detection Patterns -->
         <section class="slide" data-slide="7">
             <div class="content">
-                <h2>Detection Patterns</h2>
+                <h2>What We Detect and How Well</h2>
+                <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
+                    <strong>F1-Score:</strong> A measure of accuracy (1.000 = perfect, 0.000 = no detection). Higher is better.
+                </p>
                 <div class="patterns-grid">
                     <div class="pattern-card">
                         <h3>Email</h3>
-                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000 (Perfect!)</span>
                         <div class="pattern-example">user+tag@domain.com</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Consistent format makes detection reliable
+                        </p>
                     </div>
                     <div class="pattern-card">
                         <h3>Address</h3>
-                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000 (Perfect!)</span>
                         <div class="pattern-example">123 Main Street</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Street addresses follow predictable patterns
+                        </p>
                     </div>
                     <div class="pattern-card">
                         <h3>SSN</h3>
-                        <span class="pattern-f1 f1-perfect">F1: 1.000</span>
+                        <span class="pattern-f1 f1-perfect">F1: 1.000 (Perfect!)</span>
                         <div class="pattern-example">123-45-6789</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Always formatted as XXX-XX-XXXX
+                        </p>
                     </div>
                     <div class="pattern-card">
                         <h3>Name</h3>
-                        <span class="pattern-f1 f1-good">F1: 0.723</span>
+                        <span class="pattern-f1 f1-good">F1: 0.723 (Good)</span>
                         <div class="pattern-example">Dr. Mary-Anne O'Brien</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Catches 94% of names, but some false positives (e.g., "Credit Card")
+                        </p>
                     </div>
                     <div class="pattern-card">
                         <h3>Phone</h3>
-                        <span class="pattern-f1 f1-good">F1: 0.681</span>
+                        <span class="pattern-f1 f1-good">F1: 0.681 (Good)</span>
                         <div class="pattern-example">(555) 123-4567</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Handles multiple formats, but misses international numbers
+                        </p>
                     </div>
                     <div class="pattern-card">
                         <h3>Credit Card</h3>
-                        <span class="pattern-f1 f1-low">F1: 0.333</span>
+                        <span class="pattern-f1 f1-low">F1: 0.333 (Limited)</span>
                         <div class="pattern-example">4532-1488-0343-6467</div>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Validates with Luhn algorithm, but limited test data
+                        </p>
                     </div>
                 </div>
             </div>
@@ -231,19 +261,31 @@
         <!-- Slide 8: Results -->
         <section class="slide" data-slide="8">
             <div class="content">
-                <h2>Detection Performance</h2>
+                <h2>How Well Does It Work?</h2>
+                <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
+                    <strong>Tested on:</strong> 16 documents with 192 PII instances. Here's what the metrics mean:
+                </p>
                 <div class="metrics" style="margin-top: 0; margin-bottom: 2rem;">
                     <div class="metric">
                         <span class="metric-value">84.3%</span>
                         <span class="metric-label">Precision</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            When we detect PII, we're right 84% of the time
+                        </p>
                     </div>
                     <div class="metric">
                         <span class="metric-value">87.6%</span>
                         <span class="metric-label">Recall</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            We catch 88% of all PII that exists
+                        </p>
                     </div>
                     <div class="metric">
                         <span class="metric-value">85.9%</span>
                         <span class="metric-label">F1-Score</span>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            Overall accuracy (balance of precision & recall)
+                        </p>
                     </div>
                 </div>
                 <table class="results-table">
@@ -256,23 +298,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="pii-type">Email</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td class="improvement-value">1.000</td>
+                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
+                            <td class="pii-type"><strong>Email</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td class="improvement-value"><strong>1.000</strong></td>
                         </tr>
-                        <tr>
-                            <td class="pii-type">Address</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td class="improvement-value">1.000</td>
+                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
+                            <td class="pii-type"><strong>Address</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td class="improvement-value"><strong>1.000</strong></td>
                         </tr>
-                        <tr>
-                            <td class="pii-type">SSN</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td class="improvement-value">1.000</td>
+                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
+                            <td class="pii-type"><strong>SSN</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td><strong>100%</strong></td>
+                            <td class="improvement-value"><strong>1.000</strong></td>
                         </tr>
                         <tr>
                             <td class="pii-type">Name</td>
@@ -288,15 +330,21 @@
                         </tr>
                     </tbody>
                 </table>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center;">
+                    <strong>Key insight:</strong> Structured PII (emails, addresses, SSN) achieves perfect detection!
+                </p>
             </div>
         </section>
 
         <!-- Slide 9: Baseline Comparison -->
         <section class="slide" data-slide="9">
             <div class="content">
-                <h2>Baseline Comparison</h2>
+                <h2>How Much Better Are We?</h2>
+                <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
+                    <strong>Baseline:</strong> Simple, naive patterns (like basic regex). We compare our enhanced approach to prove it's actually better.
+                </p>
                 <div class="problem-highlight" style="margin-top: 1rem; margin-bottom: 2rem;">
-                    Average Improvement: <span style="color: var(--success-color);">+84.3%</span>
+                    <strong>Average Improvement:</strong> <span style="color: var(--success-color); font-size: 1.3rem;">+84.3%</span>
                 </div>
                 <table class="comparison-table">
                     <thead>
@@ -310,57 +358,71 @@
                     <tbody>
                         <tr>
                             <td class="pii-type">Email</td>
-                            <td>1.000</td>
+                            <td><strong>1.000</strong></td>
                             <td>0.368</td>
-                            <td class="improvement-value">+172.0%</td>
+                            <td class="improvement-value"><strong>+172%</strong></td>
                         </tr>
                         <tr>
                             <td class="pii-type">Phone</td>
-                            <td>0.681</td>
+                            <td><strong>0.681</strong></td>
                             <td>0.340</td>
-                            <td class="improvement-value">+99.9%</td>
+                            <td class="improvement-value"><strong>+100%</strong></td>
                         </tr>
                         <tr>
                             <td class="pii-type">Name</td>
-                            <td>0.723</td>
+                            <td><strong>0.723</strong></td>
                             <td>0.491</td>
-                            <td class="improvement-value">+47.4%</td>
+                            <td class="improvement-value"><strong>+47%</strong></td>
                         </tr>
                         <tr>
                             <td class="pii-type">Address</td>
-                            <td>1.000</td>
+                            <td><strong>1.000</strong></td>
                             <td>0.000</td>
-                            <td class="improvement-value">New Capability</td>
+                            <td class="improvement-value"><strong>New Capability</strong></td>
                         </tr>
                     </tbody>
                 </table>
+                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center;">
+                    <strong>Why this matters:</strong> Baseline couldn't detect addresses or SSN at all. Our enhanced patterns make these detections possible.
+                </p>
             </div>
         </section>
 
         <!-- Slide 10: Key Findings -->
         <section class="slide" data-slide="10">
             <div class="content">
-                <h2>Key Findings</h2>
+                <h2>What We Learned</h2>
+                <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
+                    Four key insights from our evaluation:
+                </p>
                 <div class="findings-grid">
                     <div class="finding-card">
-                        <h3>Regex Works for Structured PII</h3>
-                        <p>Perfect 100% F1-scores for emails, addresses, and SSN validate regex-based approach for data
-                            with consistent patterns.</p>
+                        <h3>1. Regex Works for Structured PII</h3>
+                        <p><strong>Finding:</strong> Perfect 100% F1-scores for emails, addresses, and SSN.</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            <strong>Why it matters:</strong> You don't always need machine learning. For data with consistent formats, simple regex is both effective and transparent.
+                        </p>
                     </div>
                     <div class="finding-card">
-                        <h3>Precision-Recall Trade-offs</h3>
-                        <p>Names achieve 94.1% recall (catches nearly all names) with 58.7% precision—an intentional
-                            design choice for a privacy tool.</p>
+                        <h3>2. Precision-Recall Trade-offs</h3>
+                        <p><strong>Finding:</strong> Names: 94.1% recall (catches almost all) but 58.7% precision (some false alarms).</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            <strong>Why it matters:</strong> For privacy tools, it's better to alert on potential names (even if some are false) than miss real ones. This is an intentional design choice.
+                        </p>
                     </div>
                     <div class="finding-card">
-                        <h3>Client-Side Processing is Practical</h3>
-                        <p>No server infrastructure needed, users control their data, and privacy is preserved through
-                            local processing.</p>
+                        <h3>3. Client-Side Processing Works</h3>
+                        <p><strong>Finding:</strong> Everything runs in the browser, no server needed.</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            <strong>Why it matters:</strong> Users' documents never leave their device. Privacy is preserved, and no infrastructure costs. Processing is fast (under 500ms).
+                        </p>
                     </div>
                     <div class="finding-card">
-                        <h3>Significant Baseline Improvement</h3>
-                        <p>+84.3% average F1 improvement demonstrates the value of our enhanced patterns and false
-                            positive filtering.</p>
+                        <h3>4. Enhanced Patterns Matter</h3>
+                        <p><strong>Finding:</strong> +84.3% improvement over simple baseline patterns.</p>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            <strong>Why it matters:</strong> Our careful pattern design and false positive filtering make a huge difference. You can't just use naive regex and expect good results.
+                        </p>
                     </div>
                 </div>
             </div>
