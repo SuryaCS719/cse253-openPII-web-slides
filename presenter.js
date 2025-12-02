@@ -350,14 +350,20 @@ class PresenterMode {
                 timing: '1:00',
                 content: `
                     <h3>Baseline Comparison - Visual Side-by-Side</h3>
-                    <p>"To prove our enhanced patterns actually matter, we compared against simple baseline patterns—the kind you'd write in 5 minutes.</p>
+                    <p>"To prove our enhanced patterns actually matter, we compared against simple baseline patterns—the kind you'd write in 5 minutes without thinking about edge cases.</p>
+                    <p><strong>What's the difference?</strong> Baseline uses naive regex like <code>\\S+@\\S+\\.\\S+</code> for emails—very permissive, matches invalid addresses. Our system uses <strong>enhanced regex</strong> with three key improvements:</p>
+                    <ol>
+                        <li><strong>Better pattern design</strong>—handles edge cases like plus-sign tagging (user+tag@domain.com), multiple dots, subdomains</li>
+                        <li><strong>False positive filtering</strong>—removes dates that match phone patterns, filters out common false matches</li>
+                        <li><strong>Validation algorithms</strong>—like Luhn algorithm for credit cards, format validation for SSN</li>
+                    </ol>
                     <p>Look at the side-by-side comparison. On the left, red bars show baseline performance. On the right, green and blue bars show our system.</p>
-                    <p><strong>Email detection:</strong> Baseline only finds 37 out of 100 emails—the red bar is tiny. Our system finds all 100—the green bar is full. That's <strong>172% better</strong>. Baseline patterns are too simple and miss most emails.</p>
-                    <p><strong>Phone detection:</strong> Baseline finds only 34 out of 100 phones—red bar at 34%. Our system finds 68 out of 100—blue bar at 68%. That's <strong>100% improvement</strong>. Baseline only catches one format, we catch multiple.</p>
-                    <p><strong>Address detection:</strong> This is the most dramatic. Baseline finds zero addresses—red bar is empty, 0%. Our system finds all addresses perfectly—green bar at 100%. This is a <strong>new capability</strong>—baseline couldn't do this at all.</p>
-                    <p>Average improvement: <strong>84%</strong>. The visual bars make it clear: simple patterns miss most PII. Our enhanced approach finds much more and adds capabilities baseline can't do."</p>
+                    <p><strong>Email detection:</strong> Baseline only finds 37 out of 100 emails—the red bar is tiny. It matches garbage like 'not@an.email'. Our system finds all 100—the green bar is full. That's <strong>172% better</strong>. Our enhanced patterns handle edge cases baseline misses.</p>
+                    <p><strong>Phone detection:</strong> Baseline finds only 34 out of 100 phones—red bar at 34%. It only catches dash format (555-123-4567). Our system finds 68 out of 100—blue bar at 68%. We catch multiple formats: (555) 123-4567, 555-123-4567, 555.123.4567. Plus we filter out dates that look like phones.</p>
+                    <p><strong>Address detection:</strong> This is the most dramatic. Baseline finds zero addresses—red bar is empty, 0%. Baseline has no address pattern at all. Our system finds all addresses perfectly—green bar at 100%. This is a <strong>new capability</strong>—we designed address patterns from scratch.</p>
+                    <p>Average improvement: <strong>84%</strong>. The visual bars make it clear: simple naive regex misses most PII. Our enhanced regex with filtering and validation finds much more and adds capabilities baseline can't do."</p>
                     <div class="key-points">
-                        <strong>Key message:</strong> "The side-by-side bars show we're nearly twice as good, and we add capabilities baseline can't do."
+                        <strong>Key message:</strong> "We're still using regex, but it's enhanced with better patterns, false-positive filtering, and validation. That's what makes us nearly twice as good."
                     </div>
                     <div class="transition">→ Transition: "Based on these results, we identified four key findings."</div>
                 `
