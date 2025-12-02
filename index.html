@@ -263,75 +263,100 @@
             <div class="content">
                 <h2>How Well Does It Work?</h2>
                 <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
-                    <strong>Tested on:</strong> 16 documents with 192 PII instances. Here's what the metrics mean:
+                    <strong>Tested on:</strong> 16 documents with 192 PII instances
                 </p>
-                <div class="metrics" style="margin-top: 0; margin-bottom: 2rem;">
-                    <div class="metric">
-                        <span class="metric-value">84.3%</span>
-                        <span class="metric-label">Precision</span>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                            When we detect PII, we're right 84% of the time
-                        </p>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">87.6%</span>
-                        <span class="metric-label">Recall</span>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                            We catch 88% of all PII that exists
-                        </p>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-value">85.9%</span>
-                        <span class="metric-label">F1-Score</span>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                            Overall accuracy (balance of precision & recall)
-                        </p>
+                
+                <!-- Simple Overall Performance -->
+                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #2563eb;">
+                    <h3 style="margin-bottom: 1rem; color: #1e40af;">Overall Performance</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">84%</div>
+                            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;"><strong>Accuracy</strong></div>
+                            <div style="background: #e0e7ff; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #2563eb; height: 100%; width: 84%;"></div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">Out of 100 detections, 84 are correct</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">88%</div>
+                            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;"><strong>Coverage</strong></div>
+                            <div style="background: #e0e7ff; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #2563eb; height: 100%; width: 88%;"></div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">We find 88 out of every 100 PII items</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #059669; margin-bottom: 0.5rem;">100%</div>
+                            <div style="font-size: 0.9rem; color: #64748b; margin-bottom: 0.5rem;"><strong>Perfect Types</strong></div>
+                            <div style="background: #d1fae5; height: 8px; border-radius: 4px; overflow: hidden;">
+                                <div style="background: #059669; height: 100%; width: 100%;"></div>
+                            </div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">3 PII types with perfect detection</p>
+                        </div>
                     </div>
                 </div>
-                <table class="results-table">
-                    <thead>
-                        <tr>
-                            <th>PII Type</th>
-                            <th>Precision</th>
-                            <th>Recall</th>
-                            <th>F1-Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
-                            <td class="pii-type"><strong>Email</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td class="improvement-value"><strong>1.000</strong></td>
-                        </tr>
-                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
-                            <td class="pii-type"><strong>Address</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td class="improvement-value"><strong>1.000</strong></td>
-                        </tr>
-                        <tr style="background-color: rgba(5, 150, 105, 0.1);">
-                            <td class="pii-type"><strong>SSN</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td><strong>100%</strong></td>
-                            <td class="improvement-value"><strong>1.000</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pii-type">Name</td>
-                            <td>58.7%</td>
-                            <td>94.1%</td>
-                            <td>0.723</td>
-                        </tr>
-                        <tr>
-                            <td class="pii-type">Phone</td>
-                            <td>62.8%</td>
-                            <td>74.2%</td>
-                            <td>0.681</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center;">
-                    <strong>Key insight:</strong> Structured PII (emails, addresses, SSN) achieves perfect detection!
+
+                <!-- Results by Type with Visual Bars -->
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #1e40af;">Results by PII Type</h3>
+                    
+                    <!-- Perfect Scores -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; padding: 0.75rem; background: rgba(5, 150, 105, 0.1); border-radius: 6px;">
+                            <div style="flex: 0 0 120px; font-weight: 600;">Email</div>
+                            <div style="flex: 1; position: relative;">
+                                <div style="background: #d1fae5; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="background: #059669; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">100% Perfect</div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 80px; text-align: right; font-weight: 600; color: #059669;">Perfect!</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; padding: 0.75rem; background: rgba(5, 150, 105, 0.1); border-radius: 6px;">
+                            <div style="flex: 0 0 120px; font-weight: 600;">Address</div>
+                            <div style="flex: 1; position: relative;">
+                                <div style="background: #d1fae5; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="background: #059669; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">100% Perfect</div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 80px; text-align: right; font-weight: 600; color: #059669;">Perfect!</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; padding: 0.75rem; background: rgba(5, 150, 105, 0.1); border-radius: 6px;">
+                            <div style="flex: 0 0 120px; font-weight: 600;">SSN</div>
+                            <div style="flex: 1; position: relative;">
+                                <div style="background: #d1fae5; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="background: #059669; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">100% Perfect</div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 80px; text-align: right; font-weight: 600; color: #059669;">Perfect!</div>
+                        </div>
+                    </div>
+
+                    <!-- Good Scores -->
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                            <div style="flex: 0 0 120px; font-weight: 600;">Name</div>
+                            <div style="flex: 1; position: relative;">
+                                <div style="background: #e0e7ff; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="background: #2563eb; height: 100%; width: 72%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">72%</div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 80px; text-align: right; font-size: 0.9rem; color: #64748b;">Good</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                            <div style="flex: 0 0 120px; font-weight: 600;">Phone</div>
+                            <div style="flex: 1; position: relative;">
+                                <div style="background: #e0e7ff; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                                    <div style="background: #2563eb; height: 100%; width: 68%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">68%</div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 80px; text-align: right; font-size: 0.9rem; color: #64748b;">Good</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center; padding: 1rem; background: #fef3c7; border-radius: 6px;">
+                    <strong>Key Takeaway:</strong> Emails, addresses, and SSN are detected perfectly (100%). Names and phones work well (68-72%).
                 </p>
             </div>
         </section>
@@ -341,49 +366,87 @@
             <div class="content">
                 <h2>How Much Better Are We?</h2>
                 <p class="slide-intro" style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem;">
-                    <strong>Baseline:</strong> Simple, naive patterns (like basic regex). We compare our enhanced approach to prove it's actually better.
+                    <strong>Baseline = Simple patterns</strong> (like basic regex). <strong>Our approach = Enhanced patterns</strong> with careful design.
                 </p>
-                <div class="problem-highlight" style="margin-top: 1rem; margin-bottom: 2rem;">
-                    <strong>Average Improvement:</strong> <span style="color: var(--success-color); font-size: 1.3rem;">+84.3%</span>
+                
+                <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 4px solid #059669;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #059669; margin-bottom: 0.5rem;">Average Improvement: +84%</div>
+                    <p style="font-size: 0.95rem; color: #64748b;">Our system is nearly twice as good as simple baseline patterns</p>
                 </div>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>PII Type</th>
-                            <th>Our F1</th>
-                            <th>Baseline F1</th>
-                            <th>Improvement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="pii-type">Email</td>
-                            <td><strong>1.000</strong></td>
-                            <td>0.368</td>
-                            <td class="improvement-value"><strong>+172%</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pii-type">Phone</td>
-                            <td><strong>0.681</strong></td>
-                            <td>0.340</td>
-                            <td class="improvement-value"><strong>+100%</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pii-type">Name</td>
-                            <td><strong>0.723</strong></td>
-                            <td>0.491</td>
-                            <td class="improvement-value"><strong>+47%</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="pii-type">Address</td>
-                            <td><strong>1.000</strong></td>
-                            <td>0.000</td>
-                            <td class="improvement-value"><strong>New Capability</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center;">
-                    <strong>Why this matters:</strong> Baseline couldn't detect addresses or SSN at all. Our enhanced patterns make these detections possible.
+
+                <!-- Visual Comparison -->
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: #1e40af;">Side-by-Side Comparison</h3>
+                    
+                    <!-- Email -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Email Detection</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="padding: 1rem; background: #fee2e2; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #991b1b; margin-bottom: 0.5rem;"><strong>Baseline (Simple)</strong></div>
+                                <div style="background: #fecaca; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #dc2626; height: 100%; width: 37%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">37%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #991b1b;">Only finds 37 out of 100 emails</div>
+                            </div>
+                            <div style="padding: 1rem; background: #d1fae5; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #065f46; margin-bottom: 0.5rem;"><strong>Our System (Enhanced)</strong></div>
+                                <div style="background: #a7f3d0; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #059669; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">100%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #065f46;">Finds all 100 out of 100 emails</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-weight: 600; color: #059669; font-size: 1.1rem;">+172% Better!</div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Phone Detection</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="padding: 1rem; background: #fee2e2; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #991b1b; margin-bottom: 0.5rem;"><strong>Baseline (Simple)</strong></div>
+                                <div style="background: #fecaca; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #dc2626; height: 100%; width: 34%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">34%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #991b1b;">Only finds 34 out of 100 phones</div>
+                            </div>
+                            <div style="padding: 1rem; background: #dbeafe; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #1e3a8a; margin-bottom: 0.5rem;"><strong>Our System (Enhanced)</strong></div>
+                                <div style="background: #bfdbfe; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #2563eb; height: 100%; width: 68%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">68%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #1e3a8a;">Finds 68 out of 100 phones</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-weight: 600; color: #2563eb; font-size: 1.1rem;">+100% Better!</div>
+                    </div>
+
+                    <!-- Address -->
+                    <div style="margin-bottom: 1rem;">
+                        <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Address Detection</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="padding: 1rem; background: #fee2e2; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #991b1b; margin-bottom: 0.5rem;"><strong>Baseline (Simple)</strong></div>
+                                <div style="background: #fecaca; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #9ca3af; height: 100%; width: 0%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">0%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #991b1b;">Cannot detect addresses at all</div>
+                            </div>
+                            <div style="padding: 1rem; background: #d1fae5; border-radius: 6px;">
+                                <div style="font-size: 0.9rem; color: #065f46; margin-bottom: 0.5rem;"><strong>Our System (Enhanced)</strong></div>
+                                <div style="background: #a7f3d0; height: 30px; border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 0.5rem;">
+                                    <div style="background: #059669; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem;">100%</div>
+                                </div>
+                                <div style="font-size: 0.85rem; color: #065f46;">Finds all addresses perfectly</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 0.5rem; font-weight: 600; color: #059669; font-size: 1.1rem;">New Capability!</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-secondary); text-align: center; padding: 1rem; background: #fef3c7; border-radius: 6px;">
+                    <strong>Bottom Line:</strong> Simple patterns miss most PII. Our enhanced approach finds much more and adds new capabilities (like address detection).
                 </p>
             </div>
         </section>

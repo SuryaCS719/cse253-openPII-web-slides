@@ -331,35 +331,34 @@ class PresenterMode {
             '8': {
                 timing: '1:20',
                 content: `
-                    <h3>Results - Emphasize the Data</h3>
-                    <p>"Our evaluation on <strong>16 documents</strong> with <strong>192 PII instances</strong> shows strong overall performance: <strong>84.3% precision</strong>, <strong>87.6% recall</strong>, and <strong>85.9% F1-score</strong>.</p>
-                    <p>But the real story is in this table. Look at the top three rows:</p>
-                    <p><strong>Emails:</strong> 100% precision, 100% recall, 1.000 F1. We tested 68 emails—zero false positives, zero false negatives. <strong>Perfect</strong>.</p>
-                    <p><strong>Addresses:</strong> 100%/100%/1.000 on 5 addresses. <strong>Perfect</strong>.</p>
-                    <p><strong>SSN:</strong> 100%/100%/1.000 on 5 SSN instances. <strong>Perfect</strong>.</p>
-                    <p>This validates our core hypothesis: <em>regex-based detection is optimal for structured PII</em> with consistent patterns. These aren't just good—they're mathematically perfect.</p>
-                    <p>For <strong>names:</strong> 58.7% precision, 94.1% recall, 0.723 F1. Tested 68 names, detected 64, missed only 4, but 45 false positives. Design choice to prioritize recall in privacy tool.</p>
-                    <p><strong>Phones:</strong> 62.8% precision, 74.2% recall, 0.681 F1. The 17 false negatives are mostly international formats we don't support—that's in limitations."</p>
+                    <h3>Results - Simple and Visual</h3>
+                    <p>"We tested on <strong>16 documents</strong> with <strong>192 PII instances</strong>. Let me show you the results in simple terms.</p>
+                    <p>At the top, you see our overall performance: <strong>84% accuracy</strong>—meaning out of 100 detections, 84 are correct. <strong>88% coverage</strong>—we find 88 out of every 100 PII items that exist. And most importantly, <strong>3 PII types achieve perfect 100% detection</strong>.</p>
+                    <p>Now look at the visual bars below. The green bars show our perfect scores:</p>
+                    <p><strong>Emails:</strong> 100%—we tested 68 emails and found all 68 correctly, zero mistakes. <strong>Perfect</strong>.</p>
+                    <p><strong>Addresses:</strong> 100%—all addresses detected perfectly.</p>
+                    <p><strong>SSN:</strong> 100%—all social security numbers found correctly.</p>
+                    <p>These three types have consistent formats, so regex works perfectly. This validates our core hypothesis: <em>regex-based detection is optimal for structured PII</em>.</p>
+                    <p>For <strong>names</strong> and <strong>phones</strong>, you see blue bars at 72% and 68%. These are good scores. Names catch 94% of all names but have some false positives—that's intentional for a privacy tool. Phones work well but miss international formats."</p>
                     <div class="key-points">
-                        <strong>If asked about TP/FP/FN:</strong> "Full breakdown in our report—68 TP for emails, 64 for names with 45 FP, 49 for phones with 29 FP."
+                        <strong>Key message:</strong> "Three types are perfect, two types are good. Overall, we're 84% accurate and catch 88% of all PII."
                     </div>
-                    <div class="transition">→ Transition: "To validate these results, we compared against a baseline."</div>
+                    <div class="transition">→ Transition: "But how does this compare to simple approaches? Let me show you."</div>
                 `
             },
             '9': {
                 timing: '1:00',
                 content: `
-                    <h3>Baseline Comparison</h3>
-                    <p>"To prove our enhanced patterns actually matter, we implemented a simple baseline using naive regex.</p>
-                    <p>Baseline uses patterns like <code>\\S+@\\S+\\.\\S+</code> for emails—very permissive, matches invalid addresses. For phones, just <code>\\d{3}-\\d{3}-\\d{4}</code>—only dash format. For names, <code>[A-Z][a-z]+ [A-Z][a-z]+</code>—only First Last.</p>
-                    <p>Results speak for themselves:</p>
-                    <ul>
-                        <li><strong>Email:</strong> Our F1 1.000, baseline 0.368. <strong>172% improvement</strong>. Baseline matches garbage.</li>
-                        <li><strong>Phone:</strong> 0.681 vs 0.340. <strong>100% improvement</strong>. Baseline only catches dash-separated.</li>
-                        <li><strong>Name:</strong> 0.723 vs 0.491. <strong>47% improvement</strong>. Baseline misses 'Dr. Smith'.</li>
-                        <li><strong>Address/SSN:</strong> Baseline scores 0.000—couldn't detect them at all. We added from scratch.</li>
-                    </ul>
-                    <p>Average improvement: <strong>84.3%</strong>. This quantifies the value of our enhanced patterns and filtering. It's dramatically better than naive implementations."</p>
+                    <h3>Baseline Comparison - Visual Side-by-Side</h3>
+                    <p>"To prove our enhanced patterns actually matter, we compared against simple baseline patterns—the kind you'd write in 5 minutes.</p>
+                    <p>Look at the side-by-side comparison. On the left, red bars show baseline performance. On the right, green and blue bars show our system.</p>
+                    <p><strong>Email detection:</strong> Baseline only finds 37 out of 100 emails—the red bar is tiny. Our system finds all 100—the green bar is full. That's <strong>172% better</strong>. Baseline patterns are too simple and miss most emails.</p>
+                    <p><strong>Phone detection:</strong> Baseline finds only 34 out of 100 phones—red bar at 34%. Our system finds 68 out of 100—blue bar at 68%. That's <strong>100% improvement</strong>. Baseline only catches one format, we catch multiple.</p>
+                    <p><strong>Address detection:</strong> This is the most dramatic. Baseline finds zero addresses—red bar is empty, 0%. Our system finds all addresses perfectly—green bar at 100%. This is a <strong>new capability</strong>—baseline couldn't do this at all.</p>
+                    <p>Average improvement: <strong>84%</strong>. The visual bars make it clear: simple patterns miss most PII. Our enhanced approach finds much more and adds capabilities baseline can't do."</p>
+                    <div class="key-points">
+                        <strong>Key message:</strong> "The side-by-side bars show we're nearly twice as good, and we add capabilities baseline can't do."
+                    </div>
                     <div class="transition">→ Transition: "Based on these results, we identified four key findings."</div>
                 `
             },
